@@ -1,0 +1,38 @@
+﻿@model List<EmployeeManagment.Models.Employee>
+
+<table class="table table-strapped" border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Employee employee in @Model)
+        {
+            <tr>
+                <td>
+                    @employee.Id
+                </td>
+                <td>
+                    <a asp-controller="Customer" asp-action="Details" asp-route-name="@employee.Name" asp-route-sal="@employee.Salary">@employee.Name</a>
+                </td>
+                <td>
+                    @employee.Salary
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form>
+    <input type="text" name="empName" placeholder="Enter name" />
+    <input type="submit" value="Get Name" asp-controller="Customer" asp-action="GetName" />
+</form>
+
+@if (@TempData["empName"] != null)
+{
+    <p>You entered: @TempData["empName"]</p>
+}
+
